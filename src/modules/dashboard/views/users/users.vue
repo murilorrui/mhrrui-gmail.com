@@ -103,7 +103,6 @@ export default {
     deleteCofirm() {
       this.modalDeleteEmployee = false;
       this.employeesService.deleteEmployee(this.employeeDelete).then((resp) => {
-        console.log(resp);
         this.getEmployees();
       });
     },
