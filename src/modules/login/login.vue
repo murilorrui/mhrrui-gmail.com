@@ -11,7 +11,7 @@
             />
             <span class="ml-3">VueCrud 2020</span>
           </v-row>
-          <v-form ref="form" @submit.prevent="submit">
+          <v-form ref="form" lazy-validation @submit.prevent="submit">
             <v-layout row wrap justify="center" align-items="center">
                 <v-col cols="12">
                   <v-text-field
@@ -27,8 +27,7 @@
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="[rules.required, rules.min]"
                     :type="showPassword ? 'text' : 'password'"
-                    label="Normal with hint text"
-                    hint="At least 8 characters"
+                    :label="$t('global.password')"
                     @click:append="showPassword = !showPassword"
                   ></v-text-field>
                 </v-col>
@@ -46,6 +45,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   computed: {
     logged() {
@@ -58,14 +59,19 @@ export default {
       password: '',
     },
     rules: {
-      required: (v) => !!v || 'Required.',
+      required: (v) => !!v || 'Required',
       min: (v) => v.length >= 8 || 'Min 8 characters',
     },
     conditions: false,
     showPassword: false,
   }),
   methods: {
+    ...mapActions([
+      'setUser',
+    ]),
     submit() {
+      if (!this.$refs.form.validate()) return;
+      this.setUser({ name: this.form.login });
       localStorage.setItem('user', this.form.login);
       this.$router.push('/');
     },

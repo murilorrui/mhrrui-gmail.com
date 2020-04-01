@@ -9,6 +9,7 @@ const messages = {
     global: {
       yes: 'yes',
       no: 'no',
+      password: 'Password',
       logout: 'Logout',
       table: {
         actions: 'Actions',
@@ -44,6 +45,7 @@ const messages = {
     global: {
       yes: 'sim',
       no: 'não',
+      password: 'Senha',
       logout: 'Sair',
       sidebar: {
         home: 'Início',
