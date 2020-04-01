@@ -6,9 +6,16 @@
   >
     <p class="text-center">{{$t('global.modal.delete')}}</p>
     <v-row class="px-5 py-3" slot="actions">
-      <v-btn elevation="0" @click="toggleModal(false)">não</v-btn>
+      <v-btn elevation="0" @click="toggleModal(false)">{{$t('global.no')}}</v-btn>
       <v-spacer></v-spacer>
-      <v-btn dark="dark" elevation="0" @click="deleteCofirm" color="primary">sim</v-btn>
+      <v-btn
+        dark="dark"
+        elevation="0"
+        @click="deleteCofirm"
+        color="primary"
+      >
+        {{$t('global.yes')}}
+      </v-btn>
     </v-row>
   </modal-default>
 </template>

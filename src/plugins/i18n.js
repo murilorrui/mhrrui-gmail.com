@@ -7,6 +7,8 @@ Vue.use(Vuetify);
 const messages = {
   en: {
     global: {
+      yes: 'yes',
+      no: 'no',
       logout: 'Logout',
       table: {
         actions: 'Actions',
@@ -40,6 +42,8 @@ const messages = {
   },
   pt: {
     global: {
+      yes: 'sim',
+      no: 'não',
       logout: 'Sair',
       sidebar: {
         home: 'Início',

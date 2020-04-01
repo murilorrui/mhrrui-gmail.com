@@ -82,7 +82,7 @@ export default {
   .login
     &__card
       border: 0
-      width: 45%
+      width: 325px
       display: block
       margin: 0
       position: absolute
