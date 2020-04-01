@@ -1,22 +1,24 @@
 <template lang="html">
   <v-navigation-drawer
     absolute
-    permanent
+    :permanent="$vuetify.breakpoint.mdAndUp"
+    :temporary="$vuetify.breakpoint.smAndDown"
+    v-model="drawerTeste"
     app
   >
     <template v-slot:prepend>
       <v-list-item two-line>
-        <v-avatar>
-          <v-img src="https://randomuser.me/api/portraits/women/81.jpg"/>
-        </v-avatar>
+        <v-img
+          :height="35"
+          :max-width="35"
+          :src="require('../../../assets/logo.png')"
+        />
         <v-list-item-content>
-          <v-list-item-title class="ml-3">{{userName}}</v-list-item-title>
+          <v-list-item-title class="ml-3">VueCrud 2020</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </template>
-
     <v-divider></v-divider>
-
     <v-list
       dense
       nav
@@ -25,14 +27,15 @@
         v-for="item in items"
         :key="item.title"
         link
-        @click="navigate(item)"
+        :to="item.path"
+        exact
+        color="secondary"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title>{{ $t(`${item.title}`) }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -41,15 +44,29 @@
 
 <script>
 export default {
+  props: {
+    drawer: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
+    drawerTeste: {
+      get() {
+        return this.drawer;
+      },
+      set(value) {
+        this.$emit('handler-drawer', value);
+      },
+    },
     userName() {
       return localStorage.getItem('user');
     },
   },
   data: () => ({
     items: [
-      { title: 'Home', icon: 'mdi-home-city', path: '/' },
-      { title: 'Users', icon: 'mdi-account-group-outline', path: '/users' },
+      { title: 'global.sidebar.home', icon: 'mdi-home-city', path: '/' },
+      { title: 'global.sidebar.employees', icon: 'mdi-account-group-outline', path: '/users' },
     ],
   }),
   methods: {

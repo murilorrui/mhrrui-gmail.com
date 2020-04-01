@@ -25,7 +25,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-btn type="submit" block>
+                  <v-btn color="primary" type="submit" block>
                     Login
                   </v-btn>
                 </v-col>

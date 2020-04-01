@@ -1,16 +1,16 @@
 <template lang="html">
   <v-container class="employees">
-    <v-layout class="ma-3" row>
-      New Employee
-    </v-layout>
-    <v-layout row wrap>
+    <v-row class="ma-3" row>
+      {{$t('employees.new')}}
+    </v-row>
+    <v-row>
     <v-card class="pa-3">
       <v-form ref="form" lazy-validation @submit.prevent="submit">
         <v-container grid-list-lg>
-          <v-layout row wrap justify="center" align-items="center">
+          <v-row align-items="center">
             <v-col cols="12">
               <v-text-field
-                label="Name"
+                :label="$t('global.name')"
                 :rules="[rules.required]"
                 v-model="form.name"
                 required
@@ -18,7 +18,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
-                label="Job"
+                :label="$t('global.job')"
                 :rules="[rules.required]"
                 v-model="form.job"
                 required
@@ -26,7 +26,7 @@
             </v-col>
             <v-col cols="6">
               <v-text-field
-                label="Country"
+                :label="$t('global.country')"
                 :rules="[rules.required]"
                 v-model="form.country"
                 required
@@ -34,7 +34,7 @@
             </v-col>
             <v-col cols="6">
               <v-text-field
-                label="City"
+                :label="$t('global.city')"
                 :rules="[rules.required]"
                 v-model="form.city"
                 required
@@ -42,22 +42,22 @@
             </v-col>
             <v-col cols="6">
               <v-text-field
-                label="zipCode"
+                :label="$t('global.zipCode')"
                 :rules="[rules.required]"
                 v-model="form.zipCode"
                 required
               ></v-text-field>
             </v-col>
-            <v-col cols="12" justify="end">
-              <v-btn type="submit">
-                Confirm
-              </v-btn>
-            </v-col>
-          </v-layout>
+          </v-row>
+          <v-row justify="end">
+            <v-btn type="submit" color="secondary">
+              {{$t('global.confirm')}}
+            </v-btn>
+          </v-row>
         </v-container>
       </v-form>
     </v-card>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 

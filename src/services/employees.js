@@ -14,7 +14,7 @@ export default class EmployeesService {
   }
 
   newEmployee(employee) {
-    return http.put('/employees', employee).then((resp) => resp.data);
+    return http.post('/employees', employee).then((resp) => resp.data);
   }
 
   deleteEmployee(id) {

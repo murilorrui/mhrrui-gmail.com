@@ -1,7 +1,12 @@
 <template lang="html">
   <div class="dashboard">
-    <app-header/>
-    <side-bar/>
+    <side-bar
+      :drawer="drawer"
+      @handler-drawer="handlerDrawer"
+    />
+    <app-header
+      @handler-drawer="handlerDrawer"
+    />
     <v-content>
       <transition name="slide-y-transition" mode="out-in">
         <div class="pa-8">
@@ -20,6 +25,14 @@ export default {
   components: {
     AppHeader,
     SideBar,
+  },
+  data: () => ({
+    drawer: false,
+  }),
+  methods: {
+    handlerDrawer(value) {
+      this.drawer = value;
+    },
   },
 };
 </script>

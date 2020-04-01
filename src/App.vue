@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'App',
   components: {
@@ -18,10 +20,18 @@ export default {
       return !!localStorage.getItem('user');
     },
   },
+  methods: {
+    ...mapActions([
+      'setUser',
+    ]),
+  },
   created() {
+    console.log(this);
     if (!this.logged) {
       this.$router.push('/login');
+      return;
     }
+    this.setUser({ name: localStorage.getItem('user') });
   },
 };
 </script>

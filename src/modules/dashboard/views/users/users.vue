@@ -1,19 +1,19 @@
 <template>
   <v-container class="employees">
-    <v-layout class="ma-3" row>
+    <v-row class="ma-3">
       <v-spacer/>
-      <v-btn large @click="newUser()">
-        New Employee
+      <v-btn color="primary" @click="newUser()">
+        {{$t('employees.new')}}
       </v-btn>
-    </v-layout>
+    </v-row>
     <v-card>
       <v-card-title>
-        Employees
+        {{$t('employees.title')}}
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Search"
+          :label="$t('global.search')"
           single-line
           hide-details
         ></v-text-field>
@@ -22,7 +22,8 @@
         :headers="headers"
         :items="employees"
         :search="search"
-        loading-text="Loading... Please wait"
+        :loading-text="$t('global.table.loading')"
+        pagination-text="älo"
         :loading="loading"
       >
         <template v-slot:item.actions="{ item }">
@@ -40,6 +41,9 @@
             mdi-delete
           </v-icon>
        </template>
+       <template slot="pageText" scope="{ pageStart, pageStop }">
+         From {{ pageStart }} to {{ pageStop }}
+       </template>
       </v-data-table>
     </v-card>
   </v-container>
@@ -49,20 +53,20 @@
 import EmployeesService from '@/services/employees';
 
 export default {
+  computed: {
+    headers() {
+      return [
+        { text: this.$t('global.name'), align: 'start', value: 'name' },
+        { text: this.$t('global.city'), value: 'city', sortable: false },
+        { text: this.$t('global.job'), value: 'job', sortable: false },
+        { text: this.$t('global.table.actions'), value: 'actions', sortable: false },
+      ];
+    },
+  },
   data: () => ({
     search: '',
     loading: false,
     employeesService: new EmployeesService(),
-    headers: [
-      {
-        text: 'Name',
-        align: 'start',
-        value: 'name',
-      },
-      { text: 'City', value: 'city', sortable: false },
-      { text: 'Job', value: 'job', sortable: false },
-      { text: 'Actions', value: 'actions', sortable: false },
-    ],
     employees: [],
   }),
   methods: {

@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'class-methods-use-this': 0,
+    'no-param-reassign': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
