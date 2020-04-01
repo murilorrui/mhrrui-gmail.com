@@ -1,4 +1,4 @@
-# leads
+# vuecrud2020
 
 ## Project setup
 ```

@@ -3,6 +3,14 @@
     <v-content class="login">
       <v-card class="login__card">
         <v-container class="pa-12" grid-list-lg fluid>
+          <v-row align="center" justify="center">
+            <v-img
+              :height="35"
+              :max-width="35"
+              :src="require('../../assets/logo.png')"
+            />
+            <span class="ml-3">VueCrud 2020</span>
+          </v-row>
           <v-form ref="form" @submit.prevent="submit">
             <v-layout row wrap justify="center" align-items="center">
                 <v-col cols="12">

@@ -26,7 +26,6 @@ export default {
     ]),
   },
   created() {
-    console.log(this);
     if (!this.logged) {
       this.$router.push('/login');
       return;

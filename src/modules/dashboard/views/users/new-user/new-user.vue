@@ -50,7 +50,11 @@
             </v-col>
           </v-row>
           <v-row justify="end">
-            <v-btn type="submit" color="secondary">
+            <v-btn
+              type="submit"
+              color="secondary"
+              :loading="loading"
+            >
               {{$t('global.confirm')}}
             </v-btn>
           </v-row>
@@ -66,6 +70,7 @@ import EmployeesService from '@/services/employees';
 
 export default {
   data: () => ({
+    loading: false,
     employeesService: new EmployeesService(),
     form: {
       name: '',
@@ -82,11 +87,15 @@ export default {
   methods: {
     submit() {
       if (!this.$refs.form.validate()) return;
+      this.loading = true;
       if (this.form.id) {
-        this.employeesService.editEmployee(this.form).then(() => this.$router.push('/users'));
+        this.employeesService.editEmployee(this.form).then(() => this.success());
         return;
       }
-      this.employeesService.newEmployee(this.form).then(() => this.$router.push('/users'));
+      this.employeesService.newEmployee(this.form).then(() => this.success());
+    },
+    success() {
+      this.$router.push('/users');
     },
     getEmployee(id) {
       this.employeesService.getEmployee(id).then((resp) => {

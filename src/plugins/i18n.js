@@ -7,6 +7,7 @@ Vue.use(Vuetify);
 const messages = {
   en: {
     global: {
+      logout: 'Logout',
       table: {
         actions: 'Actions',
         rowsPerPage: 'Rows per Page',
@@ -23,10 +24,8 @@ const messages = {
       zipCode: 'Zip code',
       confirm: 'Confirm',
       search: 'Search',
-      $vuetify: {
-        dataIterator: {
-          rowsPerPageText: 'Items per page:',
-        },
+      modal: {
+        delete: 'Do you want delete this?',
       },
     },
     home: {
@@ -41,6 +40,7 @@ const messages = {
   },
   pt: {
     global: {
+      logout: 'Sair',
       sidebar: {
         home: 'Início',
         employees: 'Funcionários',
@@ -57,6 +57,9 @@ const messages = {
       zipCode: 'CEP',
       confirm: 'Concluir',
       search: 'Pesquisar',
+      modal: {
+        delete: 'Deseja realmente deletar esse registro?',
+      },
     },
     home: {
       title: 'Bem vindo ao VueCrud 2020',

@@ -22,9 +22,7 @@
         </v-col>
         <v-col xs="4" sm="3" lg="2" class="header__menu">
           <span class="mr-3">{{user.name}}</span>
-          <v-avatar>
-            <v-img src="https://randomuser.me/api/portraits/women/81.jpg"/>
-          </v-avatar>
+          <menu-avatar/>
         </v-col>
       </v-row>
     </v-container>
@@ -33,8 +31,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import MenuAvatar from './components/menu-avatar.component.vue';
 
 export default {
+  components: {
+    MenuAvatar,
+  },
   computed: {
     ...mapGetters([
       'user',
