@@ -1,7 +1,7 @@
-import * as Mutations from '../mutations';
+import SET_USER from '../mutations';
 
 export default {
   setUser({ commit }, user) {
-    commit(Mutations.SET_USER, user);
+    commit(SET_USER, user);
   },
 };

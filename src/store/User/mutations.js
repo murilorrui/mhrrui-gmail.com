@@ -1,7 +1,9 @@
-import * as Mutations from '../mutations';
+import SET_USER from '../mutations';
 
-export default {
-  [Mutations.SET_USER](store, user) {
+const mutations = {
+  [SET_USER](store, user) {
     store.user = user;
   },
 };
+
+export default mutations;

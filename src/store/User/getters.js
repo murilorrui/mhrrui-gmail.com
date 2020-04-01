@@ -1,3 +1,3 @@
 export default {
-  user: store => store.user,
+  user: (store) => store.user,
 };
