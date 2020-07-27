@@ -69,6 +69,12 @@ const messages = {
       state: 'State',
       zipCode: 'Zip Code',
     },
+    rules: {
+      invalidCpf: 'Invalid CPF.',
+      invalidCnpj: 'Invalid CNPJ.',
+      required: 'Required.',
+      numberLength: 'Field exceeds the character limit.',
+    },
   },
   pt: {
     global: {
@@ -133,6 +139,12 @@ const messages = {
       city: 'Cidade',
       state: 'Estado',
       zipCode: 'CEP',
+    },
+    rules: {
+      invalidCpf: 'Número de CPF inválido.',
+      invalidCnpj: 'Número de CNPJ inválido.',
+      required: 'Campo Obrigatório.',
+      numberLength: 'Campo excede o limite de caracteres.',
     },
   },
 };

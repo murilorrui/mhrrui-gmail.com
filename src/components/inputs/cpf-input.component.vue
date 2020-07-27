@@ -2,7 +2,7 @@
   <v-text-field
     label="CPF"
     v-mask="{ mask:'###.###.###-##', unmaskedVar: value }"
-    :rules="[rules.required]"
+    :rules="[rules.required, rules.cpf]"
     v-model="cpf"
     required
   ></v-text-field>

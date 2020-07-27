@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { cnpj } from 'cpf-cnpj-validator';
 import UsersService from '@/services/user';
 import UploadAvatar from '@/components/upload-avatar/upload-avatar.component.vue';
 import BasicForm from '@/components/basic-form/basic-form.component.vue';
@@ -83,7 +84,7 @@ export default {
     UploadAvatar,
     ModalAlert,
   },
-  data: () => ({
+  data: (vm) => ({
     loading: false,
     usersService: new UsersService(),
     modalAlert: false,
@@ -109,8 +110,9 @@ export default {
       ],
     },
     rules: {
-      required: (v) => !!v || 'Required.',
-      numberLength: (v) => v.length <= 4 || 'rules.numberLength',
+      required: (v) => !!v || vm.$t('rules.required'),
+      numberLength: (v) => v.length <= 4 || vm.$t('rules.numberLength'),
+      cnpj: (v) => cnpj.isValid(v) || vm.$t('rules.invalidCnpj'),
     },
   }),
   methods: {

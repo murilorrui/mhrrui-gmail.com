@@ -2,7 +2,7 @@
   <v-text-field
     label="CNPJ"
     v-mask="{ mask:'##.###.###/####-##', unmaskedVar: value }"
-    :rules="[rules.required]"
+    :rules="[rules.required, rules.cnpj]"
     v-model="cnpj"
     required
   ></v-text-field>
