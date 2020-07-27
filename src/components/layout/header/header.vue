@@ -12,7 +12,7 @@
     <v-container>
       <v-row  align="center">
         <v-spacer/>
-        <v-col xs="2" sm="2" md="1">
+        <v-col xs="2" sm="2" lg="1">
           <v-select
             class="header__select"
             :items="items"
@@ -50,6 +50,7 @@ export default {
     setLanguage(item) {
       this.language = item;
       this.$i18n.locale = item;
+      this.$vuetify.lang.current = item;
     },
     handlerDrawer() {
       this.$emit('handler-drawer', true);

@@ -1,6 +1,5 @@
 <template lang="html">
   <v-navigation-drawer
-    absolute
     :permanent="$vuetify.breakpoint.mdAndUp"
     :temporary="$vuetify.breakpoint.smAndDown"
     v-model="drawerTeste"
@@ -66,7 +65,7 @@ export default {
   data: () => ({
     items: [
       { title: 'global.sidebar.home', icon: 'mdi-home-city', path: '/' },
-      { title: 'global.sidebar.employees', icon: 'mdi-account-group-outline', path: '/users' },
+      { title: 'global.sidebar.users', icon: 'mdi-account-group-outline', path: '/users' },
     ],
   }),
   methods: {

@@ -1,20 +1,18 @@
 <template>
   <modal-default
-    v-model="modalDeleteEmployee"
+    v-model="modalSelect"
     @toggle-modal="toggleModal"
-    :width="250"
+    :width="400"
   >
-    <p class="text-center">{{$t('global.modal.delete')}}</p>
-    <v-row class="px-5 py-3" slot="actions">
-      <v-btn elevation="0" @click="toggleModal(false)">{{$t('global.no')}}</v-btn>
-      <v-spacer></v-spacer>
+    <p class="text-center">{{$t('global.modal.alert')}}</p>
+    <v-row class="px-5 py-3" slot="actions" justify="center">
       <v-btn
         dark="dark"
         elevation="0"
-        @click="deleteCofirm"
+        @click="toggleModal"
         color="primary"
       >
-        {{$t('global.yes')}}
+      OK
       </v-btn>
     </v-row>
   </modal-default>
@@ -32,18 +30,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    alert: String,
   },
   computed: {
-    modalDeleteEmployee() {
+    modalSelect() {
       return this.value;
     },
   },
   methods: {
     toggleModal(value) {
       this.$emit('toggle-modal', value);
-    },
-    deleteCofirm() {
-      this.$emit('delete-confirm');
     },
   },
 };

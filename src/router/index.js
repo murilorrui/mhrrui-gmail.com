@@ -4,7 +4,8 @@ import Login from '../modules/login/login.vue';
 import Dashboard from '../modules/dashboard/dashboard.vue';
 import Home from '../modules/dashboard/views/home/home.vue';
 import Users from '../modules/dashboard/views/users/users.vue';
-import NewUser from '../modules/dashboard/views/users/new-user/new-user.vue';
+import NewNaturalPerson from '../modules/dashboard/views/users/natural-person/new-natural-person.vue';
+import NewLegalPerson from '../modules/dashboard/views/users/legal-person/new-legal-person.vue';
 
 Vue.use(VueRouter);
 
@@ -16,34 +17,32 @@ const routes = [
       {
         path: '/',
         name: 'home',
-        meta: {
-          title: 'Lessons',
-        },
         component: Home,
       },
       {
         path: '/users',
         name: 'users',
-        meta: {
-          title: 'Usuários',
-        },
         component: Users,
       },
       {
-        path: '/new-user',
-        name: 'new-user',
-        meta: {
-          title: 'New User',
-        },
-        component: NewUser,
+        path: '/new-natural-person',
+        name: 'new-natural-person',
+        component: NewNaturalPerson,
       },
       {
-        path: '/edit-user/:id',
-        name: 'edit-user',
-        meta: {
-          title: 'New User',
-        },
-        component: NewUser,
+        path: '/new-legal-person',
+        name: 'new-legal-person',
+        component: NewLegalPerson,
+      },
+      {
+        path: '/edit-legal-person/:id',
+        name: 'edit-legal-person',
+        component: NewLegalPerson,
+      },
+      {
+        path: '/edit-natural-person/:id',
+        name: 'edit-natural-person',
+        component: NewNaturalPerson,
       },
     ],
   },

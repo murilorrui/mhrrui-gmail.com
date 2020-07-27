@@ -2,7 +2,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://5e73e519be8c5400165c3e6d.mockapi.io/',
+        target: 'https://jsonbox.io/box_73b658bf7833ece90ddb',
         pathRewrite: {
           '^/api': '',
         },

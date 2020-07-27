@@ -7,13 +7,13 @@
     <app-header
       @handler-drawer="handlerDrawer"
     />
-    <v-content>
+    <v-main>
       <transition name="slide-y-transition" mode="out-in">
         <div class="pa-8">
           <router-view/>
         </div>
       </transition>
-    </v-content>
+    </v-main>
   </div>
 </template>
 

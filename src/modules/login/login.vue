@@ -1,6 +1,6 @@
 <template lang="html">
   <v-app>
-    <v-content class="login">
+    <v-main class="login">
       <v-card class="login__card">
         <v-container class="pa-12" grid-list-lg fluid>
           <v-row align="center" justify="center">
@@ -40,7 +40,7 @@
           </v-form>
         </v-container>
       </v-card>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

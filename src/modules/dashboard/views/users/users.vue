@@ -1,15 +1,15 @@
 <template>
   <div>
-    <v-container class="employees">
+    <v-container class="users">
       <v-row class="ma-3">
         <v-spacer/>
         <v-btn color="primary" @click="newUser()">
-          {{$t('employees.new')}}
+          {{$t('users.new')}}
         </v-btn>
       </v-row>
       <v-card>
         <v-card-title>
-          {{$t('employees.title')}}
+          {{$t('users.title')}}
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -21,12 +21,14 @@
         </v-card-title>
         <v-data-table
           :headers="headers"
-          :items="employees"
+          :items="users"
           :search="search"
           :loading-text="$t('global.table.loading')"
-          pagination-text="älo"
           :loading="loading"
         >
+          <template v-slot:item.type="{ item }">
+            <td class="text-xs-right">{{ $t(`users.type.${item.type}`) }}</td>
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
@@ -37,7 +39,7 @@
             </v-icon>
             <v-icon
               small
-              @click="showModalDeleteEmployee(item)"
+              @click="showModalDeleteUser(item)"
             >
               mdi-delete
             </v-icon>
@@ -48,70 +50,98 @@
         </v-data-table>
       </v-card>
     </v-container>
-    <modal-delete-employee
-      v-model="modalDeleteEmployee"
+    <modal-delete
+      v-model="modalDeleteUser"
       @toggle-modal="toggleModal"
       @delete-confirm="deleteCofirm"
-    />
+      />
+    <modal-select
+      v-model="modalSelectType"
+      @toggle-modal="toggleModalSelect"
+      :modal-select-data="modalSelectData"
+      @first-option="newLegalPerson"
+      @second-option="newNaturalPerson"
+      />
   </div>
 </template>
 
 <script>
-import EmployeesService from '@/services/employees';
-import ModalDeleteEmployee from './components/modal-delete-employee.component.vue';
+import UsersService from '@/services/user';
+import ModalDelete from '@/components/modal/modal-delete.component.vue';
+import ModalSelect from '@/components/modal/modal-select.component.vue';
 
 export default {
   components: {
-    ModalDeleteEmployee,
+    ModalDelete,
+    ModalSelect,
   },
   computed: {
     headers() {
       return [
         { text: this.$t('global.name'), align: 'start', value: 'name' },
-        { text: this.$t('global.city'), value: 'city', sortable: false },
-        { text: this.$t('global.job'), value: 'job', sortable: false },
-        { text: this.$t('global.table.actions'), value: 'actions', sortable: false },
+        { text: this.$t('global.type'), value: 'type', sortable: true },
+        {
+          text: this.$t('global.table.actions'),
+          value: 'actions',
+          width: '20%',
+          align: 'end',
+          sortable: false,
+        },
       ];
     },
   },
   data: () => ({
     search: '',
     loading: false,
-    employeesService: new EmployeesService(),
-    employees: [],
-    modalDeleteEmployee: false,
-    employeeDelete: '',
+    usersService: new UsersService(),
+    users: [],
+    modalDeleteUser: false,
+    modalSelectType: false,
+    userDelete: '',
+    modalSelectData: {
+      firstOption: 'users.type.legal',
+      secondOption: 'users.type.natural',
+    },
   }),
   methods: {
-    getEmployees() {
+    getUsers() {
       this.loading = true;
-      this.employeesService.getEmployees().then((resp) => {
+      this.usersService.getUsers().then((resp) => {
         this.loading = false;
-        this.employees = resp;
+        this.users = resp;
       });
     },
     newUser() {
-      this.$router.push('/new-user');
+      this.modalSelectType = true;
+    },
+    newNaturalPerson() {
+      this.$router.push('/new-natural-person');
+    },
+    newLegalPerson() {
+      this.$router.push('/new-legal-person');
     },
     editItem(item) {
-      this.$router.push(`/edit-user/${item.id}`);
+      this.$router.push(`/edit-${item.type}-person/${item._id}`);
     },
-    showModalDeleteEmployee(item) {
-      this.modalDeleteEmployee = true;
-      this.employeeDelete = item.id;
+    showModalDeleteUser(item) {
+      this.modalDeleteUser = true;
+      this.userDelete = item._id;
     },
     deleteCofirm() {
-      this.modalDeleteEmployee = false;
-      this.employeesService.deleteEmployee(this.employeeDelete).then(() => {
-        this.getEmployees();
+      this.modalDeleteUser = false;
+      this.usersService.deleteUser(this.userDelete).then(() => {
+        this.getUsers();
       });
     },
     toggleModal(value) {
-      this.modalDeleteEmployee = value;
+      this.modalDeleteUser = value;
+    },
+    toggleModalSelect(value) {
+      this.modalSelectType = value;
     },
   },
   created() {
-    this.getEmployees();
+    this.getUsers();
   },
 };
 </script>
