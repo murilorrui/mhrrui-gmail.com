@@ -67,7 +67,7 @@
                     </v-menu>
                   </v-col>
                 </v-row>
-                <basic-form :form="form"/>
+                <basic-form :form="form" :rules="rules"/>
                 <address-form
                   :adresses="form.adresses"
                   :rules="rules"
@@ -171,6 +171,7 @@ export default {
       required: (v) => !!v || vm.$t('rules.required'),
       numberLength: (v) => v.length <= 4 || vm.$t('rules.numberLength'),
       cpf: (v) => cpf.isValid(v) || vm.$t('rules.invalidCpf'),
+      email: (v) => /.+@.+\..+/.test(v) || vm.$t('rules.invalidEmail'),
     },
   }),
   methods: {

@@ -74,6 +74,7 @@ const messages = {
       invalidCnpj: 'Invalid CNPJ.',
       required: 'Required.',
       numberLength: 'Field exceeds the character limit.',
+      invalidEmail: 'E-mail must be valid.',
     },
   },
   pt: {
@@ -145,6 +146,7 @@ const messages = {
       invalidCnpj: 'Número de CNPJ inválido.',
       required: 'Campo Obrigatório.',
       numberLength: 'Campo excede o limite de caracteres.',
+      invalidEmail: 'E-mail inválido.',
     },
   },
 };

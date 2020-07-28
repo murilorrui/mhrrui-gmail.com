@@ -4,6 +4,7 @@
       <v-text-field
         label="E-mail"
         v-model="form.email"
+        :rules="[rules.email]"
       ></v-text-field>
     </v-col>
     <v-col lg="4" cols="12">
@@ -30,6 +31,7 @@ export default {
   directives: { mask },
   props: {
     form: Object,
+    rules: Object,
   },
 };
 </script>
